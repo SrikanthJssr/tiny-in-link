@@ -5,7 +5,11 @@ export const metadata = {
   description: "URL Shortener Dashboard",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className="body-bg">
@@ -15,7 +19,7 @@ export default function RootLayout({ children }) {
           
           {/* HEADER */}
           <header className="layout-header">
-          
+            {/* Add branding or nav links here if needed */}
           </header>
 
           {/* MAIN CONTENT */}
