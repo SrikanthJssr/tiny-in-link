@@ -1,26 +1,791 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f4f8;
+  color: #222;
+}
+
+/* ------------------------------
+   Main Layout Wrapper
+--------------------------------*/
+.main-container {
+  max-width: 1150px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* ------------------------------
+   Header
+--------------------------------*/
+.app-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+/* ------------------------------
+   Card Box
+--------------------------------*/
+.card-box {
+  background: #ffffff;
+  padding: 28px 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 35px;
+}
+
+/* ------------------------------
+   Inputs
+--------------------------------*/
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  transition: 0.2s;
+}
+
+input[type="text"]:focus {
+  border-color: #5b5bff;
+  outline: none;
+  box-shadow: 0 0 3px rgba(91,91,255,0.4);
+}
+
+/* Inline form layout */
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 12px;
+}
+
+/* ------------------------------
+   Buttons
+--------------------------------*/
+.btn-primary {
+  background: #5b5bff;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background: #4747e8;
+}
+
+.btn-delete {
+  background: #ff4b4b;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-delete:hover {
+  background: #d83a3a;
+}
+
+/* 'View' link styling */
+.view-link {
+  color: #5b5bff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------
+   Tables
+--------------------------------*/
+.table-wrapper {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  background: #eef0f4;
+  color: #555;
+  font-weight: 700;
+}
+
+td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 15px;
+}
+
+/* ------------------------------
+   Stats page card
+--------------------------------*/
+.stats-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  max-width: 750px;
+  margin: 25px auto;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.06);
+}
+
+.stats-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+/* ------------------------------
+   Footer
+--------------------------------*/
+.footer {
+  text-align: center;
+  margin-top: 35px;
+  padding: 20px 0;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* ==== FORM CARD ==== */
+
+.form-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  margin-bottom: 30px;
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* ==== FORM === */
+
+.form-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.form-input {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fafbff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 4px rgba(99,102,241,0.3);
+}
+
+/* ==== BUTTON ==== */
+
+.btn-primary {
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: #4f46e5;
+}
+
+
+/* ==== TABLE CARD ==== */
+
+.table-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.table-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* ==== TABLE WRAPPER ==== */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+/* ==== TABLE ==== */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background: #eef0f4;
+  padding: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: #555;
+}
+
+.data-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.data-table tr:hover {
+  background: #fafcff;
+}
+
+/* URL Cell */
+.url-cell {
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Empty row */
+.empty-row {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-size: 15px;
+}
+
+/* View link */
+.view-link {
+  color: #5b5bff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
+
+/* Delete button */
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}
+
+
+
+/* ==== STATS CARD ==== */
+
+.stats-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  max-width: 700px;
+  margin: 20px 0;
+}
+
+.stats-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Individual info rows */
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.stats-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: #333;
+}
+
+.value {
+  color: #444;
+}
+
+.code-value {
+  font-weight: bold;
+  color: #5b5bff;
+}
+
+.link-url {
+  color: #5b5bff;
+  text-decoration: none;
+}
+
+.link-url:hover {
+  text-decoration: underline;
+}
+
+
+/* ==== STATS PAGE ==== */
+
+.stats-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 15px;
+}
+
+.stats-heading {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.stats-code {
+  color: #5b5bff;
+}
+
+/* Not found */
+.stats-not-found {
+  text-align: center;
+  margin-top: 40px;
+  color: #d03535;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+/* ===== LAYOUT WRAPPER ===== */
+
+.body-bg {
+  background: #f4f6fb;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-wrapper {
+  max-width: 1150px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* ===== HEADER ===== */
+
+.layout-header {
+  margin-bottom: 35px;
+  padding-bottom: 10px;
+}
+
+.layout-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #2b2b2b;
+}
+
+/* ===== MAIN CONTENT ===== */
+
+.layout-content {
+  min-height: 60vh;
+}
+
+/* ===== FOOTER ===== */
+
+.layout-footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 15px;
+  color: #777;
+  border-top: 1px solid #e6e6e6;
+}
+
+
+
+/* ===== Global Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f2f4f8;
+  color: #222;
+  padding: 30px;
+}
+
+/* ===== Container ===== */
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* ===== Header ===== */
+.header-title {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* ===== Short URL Box (Bitly style) ===== */
+.short-url-box {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-bottom: 25px;
+}
+
+.short-url-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.short-url {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4b4ded;
+  text-decoration: none;
+}
+
+.short-url:hover {
+  text-decoration: underline;
+}
+
+/* ===== Card (White Boxes) ===== */
+.card {
+  background: white;
+  padding: 22px 28px;
+  border-radius: 12px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.card h2 {
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* ===== Form Styling ===== */
+.form-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid #dcdfe6;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #4b4ded;
+}
+
+/* ===== Buttons ===== */
+.button-primary {
+  padding: 12px 20px;
+  background: #4b4ded;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  background: #3b3ddb;
+}
+
+/* ===== Table Styles ===== */
+.table-container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.table th {
+  background: #eef1f6;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #444;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.view-link {
+  color: #4b4ded;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== Delete Button ===== */
+.btn-delete {
+  background: #e94e4e;
+  padding: 6px 14px;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #d03a3a;
+}
+
+/* ===== Stats Page ===== */
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  color: #333;
+  font-size: 16px;
+}
+
+.error-text {
+  color: #d03a3a;
+  font-weight: 600;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 50px;
+  color: #666;
+}
+
+
+/* ---- Saved Links Card ---- */
+
+.saved-links-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.saved-links-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* List container */
+.saved-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* One saved item */
+.saved-item {
+  padding: 15px 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.saved-item a.short-url {
+  font-size: 17px;
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.saved-item .full-url {
+  color: #6b6b6b;
+  font-size: 15px;
+  margin: 3px 0 8px;
+}
+
+/* Action buttons */
+.saved-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.saved-actions a {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.btn-delete {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+/* --- Container Card --- */
+.card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  margin: 25px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* --- Section Title --- */
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+/* --- Saved Links Container --- */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* --- Individual Link Item --- */
+.link-item {
+  background: #f8f9ff;
+  padding: 18px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e1e4ff;
+}
+
+/* --- Left Side (Short URL + Original URL) --- */
+.link-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Short link (big + bold) */
+.short-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3b49df;
+  text-decoration: none;
+}
+
+.short-link:hover {
+  text-decoration: underline;
+}
+
+/* Original URL (small + muted) */
+.original-url {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+/* --- Right Side (Stats + Delete) --- */
+.link-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Stats link */
+.view-link {
+  color: #5c4dff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
+
+/* Delete button */
+.btn-delete {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-delete:hover {
+  background: #e63939;
 }
